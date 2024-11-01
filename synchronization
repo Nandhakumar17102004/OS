@@ -1,0 +1,67 @@
+
+    
+#define NUM_READERS 2
+#define NUM_WRITERS 1
+
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+int vegetables_on_conveyor_belt = 0;
+
+void *reader(void *arg) {
+    int reader_id = *((int *)arg);
+    while (1) {
+        // Quality and quantity checking
+        pthread_mutex_lock(&mutex);
+        printf("Reader %d is checking quality and quantity of vegetables on the conveyor belt: %d\n", reader_id, vegetables_on_conveyor_belt);
+        pthread_mutex_unlock(&mutex);
+        sleep(1);
+    }
+    return NULL;
+}
+
+void *writer(void *arg) {
+    int writer_id = *((int *)arg);
+    while (1) {
+        // Simulating peeling, cutting, washing
+        pthread_mutex_lock(&mutex);
+        printf("Writer %d is peeling vegetables\n", writer_id);
+        // Simulate peeling
+        printf("Writer %d is cutting vegetables\n", writer_id);
+        // Simulate cutting
+        printf("Writer %d is washing vegetables\n", writer_id);
+        // Simulate washing
+        vegetables_on_conveyor_belt++; // Increment after processing
+        printf("Writer %d finished processing\n", writer_id);
+        pthread_mutex_unlock(&mutex);
+        sleep(2); // Simulating processing time
+    }
+    return NULL;
+}
+
+int main() {
+    pthread_t readers[NUM_READERS], writers[NUM_WRITERS];
+    int reader_ids[NUM_READERS], writer_ids[NUM_WRITERS];
+
+    // Create reader threads
+    for (int i = 0; i < NUM_READERS; i++) {
+        reader_ids[i] = i + 1;
+        pthread_create(&readers[i], NULL, reader, &reader_ids[i]);
+    }
+
+    // Create writer threads
+    for (int i = 0; i < NUM_WRITERS; i++) {
+        writer_ids[i] = i + 1;
+        pthread_create(&writers[i], NULL, writer, &writer_ids[i]);
+    }
+
+    // Join threads
+    for (int i = 0; i < NUM_READERS; i++) {
+        pthread_join(readers[i], NULL);
+    }
+    for (int i = 0; i < NUM_WRITERS; i++) {
+        pthread_join(writers[i], NULL);
+    }
+
+    return 0;
+}
+
+        
