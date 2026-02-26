@@ -1,4 +1,4 @@
-# 🏭 Food Processing Plant Simulation  
+#  Food Processing Plant Simulation  
 ## Operating Systems – Reader–Writer Problem
 
 This project demonstrates the **Reader–Writer synchronization problem** using a real-world analogy of a food processing plant.
@@ -99,7 +99,7 @@ Each resource is protected using synchronization techniques.
 
 ---
 
-## 🛠 Technologies Used
+##  Technologies Used
 
 - Operating Systems Concepts
 - Synchronization Mechanisms
@@ -114,7 +114,7 @@ Each resource is protected using synchronization techniques.
 
 ---
 
-## 🎯 Learning Outcomes
+##  Learning Outcomes
 
 - Understanding of Reader–Writer problem
 - Application of Mutual Exclusion
@@ -125,7 +125,7 @@ Each resource is protected using synchronization techniques.
 
 ---
 
-## 👥 Team Members
+##  Team Members
 
 - Bharath Kumar – CB.EN.U4CSE22507  
 - Sujan Karthik – CB.EN.U4CSE22547  
